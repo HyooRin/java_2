@@ -1,62 +1,53 @@
-package com.tenco.myblog.utils;
+package com.HR.blog.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBHelper {
+
+	// 1. Connection 객체를 얻는 연습
+	// 주소, 계정, 비번 ,등등 ....
 	
-	/**
-	 * 
-	 * mysql 서버와 연결을 해주는 객체 
-	 * 
-	 * Connection 객체를 생성하고 반환하는 처리
-	 * 
-	 * DbHelper 
-	 */	
 	private static final String DB_HOST = "localhost";
 	private static final String DB_PORT = "3306";
-	private static final String DB_DATABASE_NAME = "myblog";
+	private static final String DB_DATABASE_NAME = "hyoblog";
 	private static final String DB_CHARSET = "UTF-8";
 	private static final String DB_USER_NAME = "bloguser";
 	private static final String DB_PASSWORD = "1q2w3e4r5t";
 	
 	private Connection conn;
 	
-	// 싱글톤 패턴 
-	// 1. 기본 생성자로 만들어서 private 생성 
+	// 싱글톤 패턴
+	// 1. 기본 생성자 private
 	private DBHelper() {
 		
 	}
-	
-	// 2. 자기자신을 private으로 선언 
+	// 2. 자기자신 private
 	private static DBHelper dbHelper;
 	
-	// 3. 외부 어디서든지 접근 가능한 static 메서드를 만들어 준다.
+	// 3.  접근가능 static 메서드
 	public static DBHelper getInstance() {
 		if(dbHelper == null) {
-			dbHelper = new DBHelper();
+			dbHelper = new DBHelper();			
 		}
 		return dbHelper;
-		
 	}
 	
 	public Connection getConnection() {
 		if(conn == null) {
-			// 한번도 생성하지 않았다면 동작
-			String urlFormat = "jdbc:mysql://%s:%s/%s?serverTimezone=Asia/Seoul&characterEncoding=%s";
+			String urlFormat =  "jdbc:mysql://%s:%s/%s?serverTimezone=Asia/Seoul&characterEncoding=%s";
 			String url = String.format(urlFormat, DB_HOST, DB_PORT, DB_DATABASE_NAME, DB_CHARSET);
+			
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection(url, DB_USER_NAME, DB_PASSWORD);
-				System.out.println(">> DB 연결 완료 <<");
+				System.out.println("-- DB연결완료 --");
 			} catch (Exception e) {
-				System.out.println(">> DBHelper 에서 오류가 발생 했어! <<");
+				System.out.println("-- DBHelper에서 오류 발생 --");
 				e.printStackTrace();
 			}
-		}	
-		// TO DO 추후 삭제 예정 
-		//System.out.println("DBHelper안에서 주소찍어보기 :" + this);
+		}
 		return conn;
 	}
 	
@@ -68,6 +59,9 @@ public class DBHelper {
 		}
 		conn = null;
 	}
+	
+	
+	
 	
 
 }
