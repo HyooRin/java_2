@@ -9,8 +9,7 @@ public class UserService {
 	
 	public UserService() {
 		userDao = new UserDao();
-	}
-	
+	}	
 	// 회원가입 
 	public String signUp(UserDTO user) {
 		
@@ -21,8 +20,7 @@ public class UserService {
 			return msg;			
 		}
 		int resultRow = userDao.insert(user);
-		return resultRow + "";
-		
+		return resultRow + "";		
 	}
 	
 	
