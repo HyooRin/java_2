@@ -17,5 +17,16 @@ public class LibraryService {
 		
 		return resultRow + "";
 	}
+	
+//	public LibraryDTO selectBookByUsernameAndPassword() {
+//		
+//		
+//		if()
+//		
+//		
+//		
+//		return librarydao;
+//		
+//	}
 
 }

@@ -5,6 +5,11 @@ public class LibraryDTO {
 	private String title;
 	private String author;
 	private String content;
+	private String userName;
+	private String password;
+	
+	public LibraryDTO() {
+	}
 	
 	public LibraryDTO(String title, String author, String content) {
 		super();
@@ -12,6 +17,8 @@ public class LibraryDTO {
 		this.author = author;
 		this.content = content;
 	}
+	
+	
 
 	public String getTitle() {
 		return title;

@@ -39,5 +39,40 @@ public class LibraryDAO implements ILibraryDAO {
 		
 		return resultRow;
 	}
+	
+// 추후 확인
+	@Override
+//	public LibraryDTO selectBookByUsernameAndPassword(String userName, String password) {
+	public LibraryDTO selectBookByUsernameAndPassword() {
+		
+		LibraryDTO resultLibrary = null;
+		
+		// 전체조회 (추후 수정 여부 확인 )
+		String query = " SELECT * FROM book ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, username);			
+//			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				LibraryDTO dto = new LibraryDTO();
+				dto.setTitle(rs.getString("title"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setContent(rs.getString("content"));
+				resultLibrary = dto;
+			}
+		} catch (SQLException e) {
+			System.out.println("==== LibraryDAO 전체조회 오류 발생 ====");
+			e.printStackTrace();
+		}
+		return resultLibrary;		
+	}
+
+
+
+
+		
+	
 
 }

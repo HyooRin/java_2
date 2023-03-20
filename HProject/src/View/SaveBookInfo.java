@@ -1,4 +1,4 @@
-package Frame;
+package View;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
