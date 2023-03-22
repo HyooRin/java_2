@@ -38,9 +38,36 @@ public class UserDAO implements IUserDAO {
 		} catch (SQLException e) {
 			System.out.println("== signUp 함수 오류발생 ==");
 			e.printStackTrace();
+			resultRow = 0;
 		}	
 		
 		return resultRow;
+	}
+
+	// 아이디 중복확인 
+	@Override
+	public UserDTO checkUserByUserName(UserDTO userName) {
+		
+		UserDTO userdto = null;
+		
+		String query = " SELECT userName "
+				+ " FROM user "
+				+ " WHERE userName = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userName.getUserName());			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				userdto = new UserDTO();
+				userdto.setUserName(rs.getString("userName"));				
+			}
+		} catch (SQLException e) {
+			System.out.println("UserDAO 중복이름찾기 오류발생");
+			e.printStackTrace();
+		}		
+		return userdto;				
 	}
 
 }

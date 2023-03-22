@@ -12,15 +12,22 @@ public class UserService {
 	}
 	
 	// 회원가입 
-	public String SignUp(UserDTO user) {
+	public String signUp(UserDTO user) {
 		
-		String msg = "";
-		// 아이디 중복확인 -> 추후에 추가		
-		if(user.getUserName().equals("")){
-			msg = "사용자이름을 입력해주세요";
-			return msg;			
-		}
-		int resultRow = userDAO.saveUser(user);		
+		int resultRow = 0;
+		//String msg = "";
+		
+		// 이름 중복확인 		
+//		if( user.getUserName().equals()){
+//			msg = "중복";
+//			return msg;			
+//		}
+		
+	    UserDTO checkUser  =	userDAO.checkUserByUserName(user);
+	    if(checkUser == null) {
+	    	resultRow = userDAO.saveUser(user);
+	    } 
+				
 		return resultRow + "";
 	}
 	

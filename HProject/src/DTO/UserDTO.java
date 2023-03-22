@@ -6,12 +6,17 @@ public class UserDTO {
 	private String password;
 	private String tel;
 	
+	public UserDTO() {
+		
+	}
+	
 	public UserDTO(String userName, String password, String tel) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.tel = tel;
 	}
+
 
 	public String getUserName() {
 		return userName;

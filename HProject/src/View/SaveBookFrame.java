@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import DTO.LibraryDTO;
 import controller.LibraryController;
 
-public class SaveBookInfo extends JFrame {
+public class SaveBookFrame extends JFrame {
 	
 	JPanel panel;
 	JLabel title;
@@ -26,9 +26,10 @@ public class SaveBookInfo extends JFrame {
 	
 	JButton savebutton;
 	JButton cancelbutton;
+	//
 	LibraryController libraryController;
 	
-	public SaveBookInfo() {
+	public SaveBookFrame() {
 		initData();
 		setInitLayout();
 		addEventListener();

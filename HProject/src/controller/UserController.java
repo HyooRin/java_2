@@ -14,13 +14,15 @@ public class UserController {
 	
 	// 회원가입 요청 
 	
-	public String requestSignUp(String userName, String password) {
+	public String requestSignUp(UserDTO user) {
 		
-		String response = "아이디 중복입니다. 다시 입력해주세요";
-		// 확인 필요 
-		if(userName.equals(userDTO.getUserName())){
-			response = userService.SignUp(userDTO);
-		}		
+		String response = "0";
+
+		response = userService.signUp(user);
+		// 0 <-- 중복 발생 , 1 <-- 회원가입 
+
+		// todo 0 <-- 중복, 1 <-- 등록 
+		System.out.println("response :  " + response);
 		return response;		
 	}
 
